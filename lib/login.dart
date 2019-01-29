@@ -130,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
 */
 import 'package:firebase_auth/firebase_auth.dart';
 import 'home_widget.dart';
+import 'SignUp.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -222,8 +223,10 @@ class _LoginPageState extends State<LoginPage> {
                   'Forgot password?',
                   style: TextStyle(color: Colors.black54),
                 ),
-                onPressed:  _forgetPassword,
-
+                onPressed:() {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignUp()));
+                }
               ),
             ],
           )
@@ -238,65 +241,12 @@ class _LoginPageState extends State<LoginPage> {
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
         Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:user)));
       }catch(e){
-        _errorOccurred(e.message);
+
         print(e.message);
 
       }
     }
   }
-  Future<void> _errorOccurred(String e) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Error Occurred'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(e),
 
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-  Future<void> _forgetPassword() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Reset you Password'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('You recived an email to'),
-                Text('reset your password'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 
 }
