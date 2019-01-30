@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'placeholder_widget.dart';
+import 'ViewAccount.dart';
 import 'searchTab.dart';
 import 'homeTab.dart';
 import 'Create_Event_Tab.dart';
@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
     ShowDataPage(),
     SearchList(),
     CreateEventTab(),
-    PlaceholderWidget()
+    ViewAccount()
   ];
   @override
   Widget build(BuildContext context) {
