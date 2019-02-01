@@ -1,139 +1,21 @@
+<<<<<<< HEAD
   /*import 'package:flutter/material.dart';
 import 'home_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+=======
+>>>>>>> 674052e657b7f9edff732ef4f75cb1923cc9af47
 
-
-class LoginPage extends StatefulWidget {
-  static String tag = 'login-page';
-  @override
-  _LoginPageState createState() => new _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email, _password;
-
-  @override
-  Widget build(BuildContext context) {
-
-
-    final appTitle = Text(
-        "Attendgram",
-        style: TextStyle(fontSize: 30.0, color: Colors.blue),
-      textAlign: TextAlign.center,
-
-    );
-
-
-    final theLogo = new Image.asset(
-
-        'assets/images/attendgram.png',
-      height: 300,
-      width: 250,
-
-      alignment: Alignment.center,
-
-
-
-    );
-
-
-    final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      initialValue: 'user@mail.com',
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-      onSaved: (input) => _email = input,
-    );
-
-    final password = TextFormField(
-      autofocus: false,
-      initialValue: 'some',
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-      onSaved: (input) => _password = input,
-    );
-
-    final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 5.0,
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: signIn,
-          color: Colors.lightBlueAccent,
-          child: Text('Log In', style: TextStyle(color: Colors.white)),
-        ),
-      ),
-    );
-
-    final forgotLabel = FlatButton(
-      child: Text(
-        'Forgot password?',
-        style: TextStyle(color: Colors.black54),
-      ),
-      onPressed: () {
-      },
-    );
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-        appBar: new AppBar(),
-
-
-      body: Center(
-    key: _formKey,
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
-
-            theLogo,
-            SizedBox(height: 32.0),
-            //appTitle,
-            //SizedBox(height: 48.0),
-            email,
-            SizedBox(height: 8.0),
-            password,
-            SizedBox(height: 24.0),
-            loginButton,
-            forgotLabel
-          ],
-        ),
-    ),
-    );
-  }
-
-  void signIn() async {
-    if(_formKey.currentState.validate()){
-      _formKey.currentState.save();
-      try{
-        FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-      }catch(e){
-        print(e.message);
-      }
-    }
-  }
-}
-*/
 import 'package:firebase_auth/firebase_auth.dart';
 import 'home_widget.dart';
+import 'SignUp.dart';
 import 'package:flutter/material.dart';
+import 'globals.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'myData.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
+  noSuchMethod(Invocation i) => super.noSuchMethod(i);
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
@@ -142,73 +24,119 @@ class _LoginPageState extends State<LoginPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _email, _password;
+  DatabaseReference Ref;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: Colors.white,
-      appBar: new AppBar(),
+
       body: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
+            shrinkWrap: true,
             children: <Widget>[
-           Image.asset(
+              SizedBox(height: 100.0),
+              Image.asset(
 
-          'assets/images/attendgram.png',
-            height: 300,
-            width: 250,
+                'assets/images/attendgram.png',
+                height: 300,
+                width: 250,
 
-            alignment: Alignment.center,
+                alignment: Alignment.center,
 
 
 
-          ),
+              ),
+              TextFormField(
 
-        TextFormField(
-          keyboardType: TextInputType.emailAddress,
-          autofocus: false,
-          initialValue: 'user@mail.com',
-          decoration: InputDecoration(
-            hintText: 'Email',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-          ),
-          onSaved: (input) => _email = input,
-        ),
-          TextFormField(
-            autofocus: false,
-            initialValue: 'some',
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: 'Password',
-              contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-            ),
-            onSaved: (input) => _password = input,
-          ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Material(
-                borderRadius: BorderRadius.circular(30.0),
-                shadowColor: Colors.lightBlueAccent.shade100,
-                elevation: 5.0,
-                child: MaterialButton(
-                 minWidth: 200.0,
-                 height: 42.0,
-                  onPressed: signIn,
-                 color: Colors.lightBlueAccent,
-                 child: Text('Log In', style: TextStyle(color: Colors.white)),
-            ),
-          ),
-        ),
-        FlatButton(
-          child: Text(
-            'Forgot password?',
-            style: TextStyle(color: Colors.black54),
-          ),
-          onPressed: () {
-          },
-        ),
+                keyboardType: TextInputType.emailAddress,
+                autofocus: false,
+                validator: (val) => val.isEmpty ? 'Email can\'t be empty.' : null,
+
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+                onSaved: (input) => _email = input,
+              ),
+              SizedBox(height: 15.0),
+              TextFormField(
+                autofocus: false,
+
+                obscureText: true,
+                validator: (val) => val.isEmpty ? 'Password can\'t be empty.' : null,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+                onSaved: (input) => _password = input,
+              ),
+
+               SizedBox(height: 30.0),
+              Center(
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+
+                     padding: EdgeInsets.symmetric(vertical: 5.0),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(30.0),
+                        shadowColor: Colors.lightBlue.shade100,
+                        //elevation: 5.0,
+                        child: MaterialButton(
+                          minWidth: 330.0,
+                          height: 42.0,
+                          onPressed: signIn,
+                          color: Colors.lightBlue,
+                          child: Text('SignIn', style: TextStyle(color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 5.0),
+              Center(
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+
+                      padding: EdgeInsets.symmetric(vertical: 5.0),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(30.0),
+                        shadowColor: Colors.lightBlue.shade100,
+                        //elevation: 5.0,
+                        child: MaterialButton(
+                          minWidth: 330.0,
+                          height: 42.0,
+                          onPressed:() {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => SignUp()));
+                          },
+                          color: Colors.lightBlue,
+                          child: Text('SignUp', style: TextStyle(color: Colors.white)),
+                        ),
+
+                      ),
+
+                    ),
+
+                  ],
+                ),
+              ),
+
+              FlatButton(
+                child: Text(
+                  'Forgot password?',
+                  style: TextStyle(color: Colors.black54),
+                ),
+
+              ),
             ],
           )
       ),
@@ -220,10 +148,75 @@ class _LoginPageState extends State<LoginPage> {
       _formKey.currentState.save();
       try{
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+        globalUserId=user.uid;
+        Ref = FirebaseDatabase.instance.reference();
+
+
+
+        Ref.child('Users').child(globalUserId).once().then((DataSnapshot snap) {
+          var data = snap.value;
+          // allData.clear();
+
+          userInfo d = new userInfo(
+            data['Name'],
+            data['descrption'],
+              data['interests']
+
+          );
+          currentUserName=data['Name'];
+          currentUserDescripition=data['descrption'];
+          currentUserinterests=data['interests'];
+          //allData.add(d);
+
+          setState(() {
+          });
+        });
+
+
+
+
+
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:user)));
       }catch(e){
+        _errorOccurred(e.message);
         print(e.message);
+
       }
     }
   }
+
+
+  Future<void> _errorOccurred(String e) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error Occurred'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
+
+
 }

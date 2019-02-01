@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/attendgram.iml" filepath="$PROJECT_DIR$/.idea/attendgram.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Attendgram.iml" filepath="$PROJECT_DIR$/.idea/Attendgram.iml" />
+>>>>>>> 674052e657b7f9edff732ef4f75cb1923cc9af47
     </modules>
   </component>
 </project>

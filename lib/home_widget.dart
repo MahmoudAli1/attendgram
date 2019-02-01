@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'placeholder_widget.dart';
+import 'View_Account.dart';
 import 'searchTab.dart';
 import 'homeTab.dart';
 import 'Create_Event_Tab.dart';
-
+import 'ShowDataPage.dart';
+import 'package:firebase_auth/firebase_auth.dart' ;
 class Home extends StatefulWidget {
+  const Home({
+    Key key , this.user
+  }) : super(key:key);
+  final FirebaseUser user ;
   static String tag = 'home-page';
   @override
   State<StatefulWidget> createState() {
@@ -14,8 +19,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+
   final List<Widget> _children = [
-    homeTab(),
+    ShowDataPage(),
     SearchList(),
     CreateEventTab(),
     PlaceholderWidget()
@@ -23,10 +29,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Attendgram'),
-        backgroundColor: Colors.blueGrey,
-      ),
+
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

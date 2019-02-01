@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 firebase_auth=C:\\Users\\Mahmoud\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-0.6.6\\
 firebase_core=C:\\Users\\Mahmoud\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.2.5+1\\
 firebase_database=C:\\Users\\Mahmoud\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_database-1.0.5\\
 shared_preferences=C:\\Users\\Mahmoud\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.4.3\\
+=======
+firebase_auth=C:\\Users\\Win 8.1\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_auth-0.6.6\\
+firebase_core=C:\\Users\\Win 8.1\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_core-0.2.5+1\\
+firebase_database=C:\\Users\\Win 8.1\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_database-1.0.5\\
+>>>>>>> 674052e657b7f9edff732ef4f75cb1923cc9af47

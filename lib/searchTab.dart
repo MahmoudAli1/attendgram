@@ -44,17 +44,11 @@ class _SearchListState extends State<SearchList>
 
   void init() {
     _list = List();
-    _list.add("Google");
-    _list.add("IOS");
-    _list.add("Andorid");
-    _list.add("Dart");
-    _list.add("Flutter");
-    _list.add("Python");
-    _list.add("React");
-    _list.add("Xamarin");
-    _list.add("Kotlin");
-    _list.add("Java");
-    _list.add("RxAndroid");
+    _list.add("COE202 - Sec02");
+    _list.add("Dr Sajjad Meeting");
+    _list.add("Apple Conference");
+    _list.add("TechBench Event");
+
   }
 
   @override
@@ -93,6 +87,11 @@ class _SearchListState extends State<SearchList>
 
   Widget buildBar(BuildContext context) {
     return new AppBar(
+
+      //title: Text('Attendgram'),
+        backgroundColor: Colors.blueGrey,
+        //centerTitle: true,
+
         centerTitle: true,
         title: appBarTitle,
         actions: <Widget>[
@@ -133,7 +132,7 @@ class _SearchListState extends State<SearchList>
     setState(() {
       this.actionIcon = new Icon(Icons.search, color: Colors.white,);
       this.appBarTitle =
-      new Text("Search Sample", style: new TextStyle(color: Colors.white),);
+      new Text("KeyWord Search", style: new TextStyle(color: Colors.white),);
       _IsSearching = false;
       _searchQuery.clear();
     });
