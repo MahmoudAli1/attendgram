@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'globals.dart';
 
 class SignUp extends StatefulWidget {
 
@@ -14,10 +14,10 @@ class _SignUpState extends State<SignUp> {
 
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email, _password,_UserName,_descripition;
+  String _email, _password,_UserName;
+
+
   DatabaseReference Ref;
-
-
   FirebaseUser user;
 
 
@@ -36,24 +36,24 @@ class _SignUpState extends State<SignUp> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              SizedBox(height: 60.0),
+              SizedBox(height: 30.0),
               Image.asset(
 
                 'assets/images/attendgram.png',
-                height: 250,
-                width: 250,
+                height: 200,
+                width: 200,
 
                 alignment: Alignment.center,
 
 
 
               ),
-
+              SizedBox(height: 15.0),
               TextFormField(
-                autofocus: false,
+                keyboardType: TextInputType.text,
+                autofocus: true,
 
-
-                obscureText: true,
+                obscureText: false,
 
                 decoration: InputDecoration(
                   hintText: 'User Name ',
@@ -63,6 +63,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 onSaved: (input) => _UserName = input,
               ),
+              SizedBox(height: 15.0),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 autofocus: false,
@@ -75,7 +76,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 onSaved: (input) => _email = input,
               ),
-              SizedBox(height: 15.0),
+             SizedBox(height: 15.0),
               TextFormField(
                 autofocus: false,
 
@@ -89,20 +90,7 @@ class _SignUpState extends State<SignUp> {
                 onSaved: (input) => _password = input,
               ),
 
-              TextFormField(
-                autofocus: false,
 
-
-                obscureText: true,
-
-                decoration: InputDecoration(
-                  hintText: 'Description ',
-                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-                ),
-                onSaved: (input) => _descripition = input,
-              ),
 
               SizedBox(height: 40.0),
               Center(
@@ -115,9 +103,9 @@ class _SignUpState extends State<SignUp> {
                       child: Material(
                         borderRadius: BorderRadius.circular(30.0),
                         shadowColor: Colors.lightBlue.shade100,
-                        elevation: 5.0,
+                        //elevation: 5.0,
                         child: MaterialButton(
-                          minWidth: 370.0,
+                          minWidth: 330.0,
                           height: 42.0,
                           onPressed: SignUP,
                           color: Colors.lightBlue,
@@ -144,13 +132,13 @@ class _SignUpState extends State<SignUp> {
 
          Ref = FirebaseDatabase.instance.reference();
 
-        userEntry newuser= userEntry(_UserName,_descripition);
+        userEntry newuser= userEntry(_UserName);
 
-        Ref.child('Users').set(user.uid);
+        Ref.child('Users').setPriority(user.uid);
         Ref.child('Users').child(user.uid).set(newuser.toJson());
 
       }catch(e){
-
+        _errorOccurred(e.message);
         print(e.message);
 
       }
@@ -158,21 +146,58 @@ class _SignUpState extends State<SignUp> {
   }
 
 
+  Future<void> _errorOccurred(String e) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error Occurred'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e),
 
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
 }
-class userEntry {
-  String description;
-  String Name;
-  String user;
 
-  userEntry(this.Name, this.description);
+
+
+
+
+class userEntry {
+
+  String Name;
+
+
+  userEntry(this.Name);
 
   toJson() {
     return {
 
       "Name": Name,
-      "description": description
+      "descrption":'',
+      "interests":'',
+      "Private_Event_Ids":'',
+      "Public_Event_Ids":'',
+
+
+
     };
   }
 }
