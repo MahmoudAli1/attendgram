@@ -15,7 +15,7 @@ class EventInfoPage extends StatefulWidget {
 
 class _EventInfoPageState extends State<EventInfoPage> {
   _EventInfoPageState(var eventNum);
-   List<myData> allData= [];
+   List<evntData> allData= [];
   static String eventName, eventTime, eventDate;
   var occurrences ;
   var occurr=1;
@@ -25,7 +25,7 @@ class _EventInfoPageState extends State<EventInfoPage> {
       var data = snap.value;
      // allData.clear();
         print(eventIndex);
-         myData d = new myData(
+      evntData d = new evntData(
            data[eventIndex]['name'],
            data[eventIndex]['date'],
            data[eventIndex]['time'],

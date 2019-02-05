@@ -60,7 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
 
                     SizedBox(height: 50.0),
-
                     Text(
                       '$currentUserName',
                       textAlign: TextAlign.center,

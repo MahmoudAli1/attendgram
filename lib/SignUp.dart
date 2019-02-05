@@ -14,7 +14,7 @@ class _SignUpState extends State<SignUp> {
 
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email, _password,_UserName;
+  String UserEmail, _password,_UserName;
 
 
   DatabaseReference Ref;
@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                   contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
                 ),
-                onSaved: (input) => _email = input,
+                onSaved: (input) => UserEmail = input,
               ),
              SizedBox(height: 15.0),
               TextFormField(
@@ -128,11 +128,11 @@ class _SignUpState extends State<SignUp> {
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
       try{
-         user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
+         user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: UserEmail, password: _password);
 
          Ref = FirebaseDatabase.instance.reference();
 
-        userEntry newuser= userEntry(_UserName);
+        userEntry newuser= userEntry(_UserName,UserEmail);
 
         Ref.child('Users').setPriority(user.uid);
         Ref.child('Users').child(user.uid).set(newuser.toJson());
@@ -183,18 +183,20 @@ class _SignUpState extends State<SignUp> {
 class userEntry {
 
   String Name;
+  String UserEmail;
 
-
-  userEntry(this.Name);
+  userEntry(this.Name,this.UserEmail);
 
   toJson() {
     return {
 
       "Name": Name,
+      "email":UserEmail,
       "descrption":'',
       "interests":'',
-      "Private_Event_Ids":'',
-      "Public_Event_Ids":'',
+      "Event_Ids":'',
+      "Event_Admin":''
+
 
 
 
