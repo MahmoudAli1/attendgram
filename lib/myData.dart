@@ -1,16 +1,27 @@
-class myData {
+class evntData {
   String name, date, time;
 
-  myData(this.name, this.date, this.time);
+  evntData(this.name, this.date, this.time);
 
 }
 
 
 class userInfo{
 
-  String name ,descrption ,interests ;
+  String name ,descrption ,interests ,Event_Ids,Event_Admin;
 
-  userInfo(this.name,this.descrption,this.interests);
+  userInfo(this.name,this.descrption,this.interests,this.Event_Ids,this.Event_Admin);
 
 
 }
+
+class EventId{
+
+  String EId;
+
+  EventId(this.EId);
+
+
+}
+
+

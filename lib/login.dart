@@ -160,13 +160,17 @@ class _LoginPageState extends State<LoginPage> {
           userInfo d = new userInfo(
             data['Name'],
             data['descrption'],
-              data['interests']
+              data['interests'],
+            //data['P_Event_Ids']
 
           );
           currentUserName=data['Name'];
           currentUserDescripition=data['descrption'];
           currentUserinterests=data['interests'];
-          //allData.add(d);
+          //currentUserPEvents=data['P_Event_Ids'];
+          print("###############################################################");
+          print(currentUserName);
+          print("###############################################################");
 
           setState(() {
           });

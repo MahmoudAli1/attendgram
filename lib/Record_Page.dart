@@ -94,7 +94,7 @@ class _RecordPageState extends State<RecordPage> {
 //  }
 
 
-  List<myData> allData = [];
+  List<evntData> allData = [];
   List<String> record = [];
   var id ;
   var UserEvenIndex = [] ;
